@@ -1,0 +1,27 @@
+.addBookmark-dialog
+  form(action="" method="post" style="padding: 10px;").cm-formLayout
+    .rows
+      .row
+        .title
+          label(for="#") Url:
+        .input
+          input(type="text" value=url).J-url
+    .rows
+      .row
+        .title
+          label(for="#") 名称:
+        .input
+          input(type="text" value="" autofocus).J-name
+    .rows
+      .row
+        .title
+          label(for="#") 文件夹:
+        .input.J-directory
+          select(style="display:none")
+            option 文件夹1
+    .rows
+      .row
+        .title
+        .input
+          input(type="submit" value="保存").cm-btn.J-submit
+          a(href="#").cm-btn.J-close 取消

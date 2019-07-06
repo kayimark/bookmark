@@ -1,0 +1,58 @@
+
+@mixin desktop
+    @media (max-width: 768px)
+        @content
+@mixin mobile
+    @media (max-width: 480px)
+        @content
+@mixin sm_mobile
+    @media (max-width: 320px)
+        @content
+
+
+@media only screen and (max-width : 768px)
+  .website-titles .profile-title
+    width: 25% !important
+
+
+.hide
+  display: none
+
+.stuck
+  position: fixed
+  top: 0
+
+.md20
+  margin-bottom: 20px
+.mt20
+  margin-top: 20px
+.md10
+  margin-bottom: 10px
+.mt10
+  margin-top: 10px
+
+.group:before,
+.group:after
+    content: ""
+    display: table
+.group:after
+    clear: both
+
+
+.fr
+  float: right
+.fl
+  float: left
+
+.clear
+  clear: both
+
+
+.hide
+  display: none
+
+
+.container
+  max-width: 100%
+  width: 1000px
+  margin: auto

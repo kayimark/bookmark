@@ -1,0 +1,21 @@
+{
+    "name": "任意门书签管理器",
+    "short_name": "任意门",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#2f3ba2",
+      "background_color": "#2f3ba2",
+      "display": "browser",
+      "orientation": "landscape",
+      "start_url": "/-/"
+}

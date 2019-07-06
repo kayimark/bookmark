@@ -1,0 +1,6 @@
+.paper:nth-child(2n+1) {
+	background: #eee;
+}
+body {
+	overflow: auto !important
+}

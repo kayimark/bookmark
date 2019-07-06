@@ -1,0 +1,143 @@
+.
+    {% 
+        o = o.sort(function(a,b){
+                if(a.the_order === null) {
+                    a.the_order = 1000;
+                }
+                if(b.the_order === null) {
+                    b.the_order = 1000;
+                }
+                return a.the_order - b.the_order
+            })
+
+
+
+        $.each(o, function(k,v){ 
+            v.permanent_url = location.protocol + "//" + location.host + "/-/" + v.st;
+        });
+
+        var normalProfiles = [];
+        var archivedProfiles = [];
+        
+        if(o.length > 1) {
+            $.each(o, function(k,v){ 
+                if(v.is_archive) {
+                    archivedProfiles.push(v)
+                } else {
+                    normalProfiles.push(v)
+                }
+            });
+        } else {
+            normalProfiles = o;
+        }
+        
+
+        var lastTab = (function(){
+                        var lastTab = localStorage.getItem("lastTab") || normalProfiles[0].st;
+                        var found = false;
+                        $.each(o, function(k,v){
+                            if(v.st === lastTab) {
+                                found = true;
+                            }
+                        })
+                        if(!found) {
+                            lastTab = normalProfiles[0].st
+                        }
+
+                        var hasArchived = false;
+                        if(normalProfiles.length < lastTab + 1) {
+                            lastTab = normalProfiles[0].st;
+                        }
+
+                        return lastTab;
+                    })()
+        
+    %}
+
+    {%
+        if(o.length === 0) {
+    %}
+        <button class="layui-btn J-newHomePage">新建</button>
+    {%
+        }
+    %}
+    <div class="J-tabs">
+        {% if(!GET.hasId) { %}
+        <div class="website-titles J-website-titles tab-titles Group">
+            {% $.each(normalProfiles, function(k,v){ %}
+                <div class="fl profile-title J-profile-title tab-title {%= v.st == lastTab ? "active" : ""%}" data-st="{%=v.st%}" data-name="{%= v.name %}">
+                    <a href="{%=v.permanent_url%}" class="cm-btn" title="{%= v.name %}">
+                        {%= v.name %} <div class="J-toggleMenu toggleMenu"><span class="iconfont ic-jiantouxia"></span></div>
+                    </a>
+                    <div class="subMenu">
+                        <ul>
+                            <li class="J-edit" data-st="{%= v.st %}" data-name="{%= v.name %}">编辑</li>
+                            <li class="J-delete" data-st="{%= v.st %}" data-name="{%= v.name %}">删除</li>
+                        </ul>
+                    </div>
+                </div>
+            {% }); %}
+            {% if(archivedProfiles.length) { %}
+            <div class="fl profile-title tab-title J-showArchive">
+                <a href="#" class="cm-btn">
+                    不常用 <div class="toggleMenu"><span class="iconfont ic-jiantouxia"></span></div>
+                </a>
+                <div class="sub paper dropdownMenu" style="margin-bottom: 5em">
+                    {% $.each(archivedProfiles, function(k,v){ %}
+                    <a class="link J-profile-title" href="{%= v.permanent_url %}" data-st="{%=v.st%}" data-name="{%= v.name %}">{%= v.name %}</a>
+                    {% }); %}
+                </div>
+            </div>
+            {% } %}
+        </div>
+        {% } %}
+        <div class="tab-contents Group">
+            {% $.each(o, function(k,v){ %}
+                <div class="tab-content Group" data-st="{%=v.st%}" style="{%= v.st != lastTab ? "display:none" : ""%}">
+                    <div class="tools">
+                        <a href="#" class="J-reorder-bookmarks">调整顺序</a>
+                        <a href="#" class="J-editCurrent" data-st="{%= v.st %}" data-name="{%= v.name %}">编辑</a>
+                        <a href="#" class="J-delete" data-st="{%=v.st%}" data-name="{%=v.name%}">删除</a>
+                    </div>
+                    <div class="websites paper">
+                        {% $.each(v.json.data, function(k,v){ %}
+                            <div class="website">
+                                {% 
+                                v.url = v.url.replace(/^\s*javascript:/g, "")
+                                %}
+                                <a class="link" href="{%= v.url || '#' %}" title="{%= v.text %}" target="_blank">{%= v.text %}</a>
+                                {% if(v.data && v.data.length) { %}
+                                    <div class="sub paper">
+                                        <i class="fas fa-times-circle closeDropdown"></i>
+                                        {% $.each(v.data, function(k,v){ %}
+                                            {% 
+                                            v.url = v.url.replace(/^\s*javascript:/g, "")
+                                            %}
+                                            <a class="link" href="{%= v.url || '#' %}" target="_blank">{%= v.text %}</a>
+                                        {% }); %}
+                                    </div>
+                                {% } %}
+                            </div>
+                        {% }); %}
+                        
+                    </div>     
+                    <div class="clear"></div>
+                    {%
+                    marked.setOptions({
+                        sanitize: true
+                    });
+                    var sample = `这是书签文件夹的描述(支持 Mardown 语法)`;
+                    var text      = v.markdown,
+                        html      = marked(text || "");
+                    %}
+                    {% if(v.markdown && v.markdown !== `这是书签文件夹的描述(支持 Mardown 语法)`) { %}
+                    <article class="J-profile-article profile-article paper markdown-body">
+                        <h1>{%= v.name %}</h1>
+                        {%# html.replace(sample, "") %}
+                    </article>
+                    {% } %}
+                </div>   
+
+            {% }); %}
+        </div>
+    </div>

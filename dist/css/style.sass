@@ -1,0 +1,164 @@
+@import "~vue-snotify/styles/dark";
+@import "base"
+@import "iconfont"
+@import "iscroll"
+@import "tools"
+@import "cm"
+@import "pages/home"
+@import "pages/dash"
+@import "pages/global"
+@import "pages/checkout"
+@import "pages/confirm"
+
+
+// ::-webkit-scrollbar
+//     width: 5px;
+//     height: 16px;
+//     // background-color: #272822;
+//     outline: none
+
+// /*定义滚动条轨道 内阴影+圆角*/
+// ::-webkit-scrollbar-track
+//     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+//     border-radius: 10px;
+//     background-color: #272822;
+//     outline: none
+
+// /*定义滑块 内阴影+圆角*/
+// ::-webkit-scrollbar-thumb
+//     border-radius: 10px;
+//     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+//     background-color: #555;
+//     outline: none
+
+a
+  text-decoration: none;
+  color: rgba(70, 90, 110, 0.85);
+.layui-btn,.cm-btn
+  background: #252839
+  display: inline-block;
+  height: 38px !important;
+  line-height: 38px;
+  color: #fff;
+  white-space: nowrap;
+  text-align: center;
+  border: none;
+  font-size: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  padding-left: 10px
+  padding-right: 10px
+  -webkit-appearance: none;
+  border-radius: 0;
+  &:hover
+    background: #252839 + 40%
+  &.red
+    background: #FF5722
+.cm-input
+  display: block;
+  width: 100%;
+  padding-left: 10px;
+  height: 38px;
+  line-height: 1.3;
+  line-height: 38px\9;
+  border-width: 1px;
+  border-style: solid;
+  background-color: #fff;
+  border-radius: 2px;
+  outline: none;
+  border: 1px solid #d0d0d0;
+  border-radius: 0 !important;
+  -webkit-appearance: none;
+  &:focus
+    border: 1px solid #9c9c9c;
+.cm-btn-group
+  font-size: 0;
+.link
+  text-decoration: none
+  color: rgba(70,90,110,.85)
+  &:hover
+    color: rgba(70,90,110,.85) - 50%
+
+.CodeMirror
+  height: auto !important
+  width: 100%
+.CodeMirror-scroll
+  max-height: 100%
+
+
+  
+.website-titles
+  margin-bottom: 10px
+  width: 100%;
+  .profile-title
+    font-size: 0
+    // height: 20px
+    background: #eee
+    position: relative
+    width: 12.5%;
+    .toggleMenu
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%
+      display: none
+      align-items: center
+      justify-content: center
+      padding: 0 5px
+      .iconfont
+        font-size: 10px
+      &:hover
+        cursor: pointer
+        background: rgba(0,0,0,.1)
+    &.active
+      .cm-btn
+        background-color: #FF5722
+    .subMenu
+      position: absolute;
+      top: 38px;
+      left: 0;
+      width: 100%;
+      background: white;
+      z-index: 9;
+      display: none;
+      ul
+        li
+          font-size: 16px;
+          color: rgba(70, 90, 110, 0.85);
+          padding: 0.5em 0.5em;
+          cursor: pointer;
+          &:hover
+            background-color: #252839;
+            color: white;
+      *
+        display: block;
+        color: black;
+
+    a
+      float: left
+      padding-right: 10px
+      font-size: 12px
+      border-radius: 0
+      padding: 0 10px
+      border-right: 0
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      position: relative;
+      .visible
+        position: absolute;
+        right: 0.3em;
+        bottom: 0.3em;
+        font-size: 12px;
+.tab-contents
+  &.down-y
+    position: relative
+    top: 20px
+  .tab-content
+
+.styled-background
+    color: #00b6ff;
+
+@media (max-width: 480px)
+  .profile-title
+    width: 25% !important;
